@@ -20,9 +20,11 @@ COPY . /app
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
-# Remove default nginx config and add our own
-RUN rm -f /etc/nginx/conf.d/default.conf
-COPY nginx/default.conf /etc/nginx/conf.d/
+# Remove all default nginx configs
+RUN rm -f /etc/nginx/conf.d/*
+
+# Copy in our custom nginx config
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Add entrypoint script
 COPY docker-entrypoint.sh /entrypoint.sh
