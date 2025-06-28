@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  hello-flask:
+    build: .
+    ports:
+      - "80:80"
+    restart: always
